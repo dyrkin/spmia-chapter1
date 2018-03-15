@@ -1,0 +1,10 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+}
+
+task buildImage(type: DockerBuildImage, dependsOn: [replaceTokens, copyJar]) {
+    inputDir = new File("${project.buildDir}/docker")
+    tag = "johncarnell/tmx-simple-service:${chapter}"
+}
